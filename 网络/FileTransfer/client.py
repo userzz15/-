@@ -11,9 +11,10 @@ def main(select_file):
     # select_file = input("请选择需要的")
     client_socket.send(select_file.encode("utf-8"))
     file_data = client_socket.recv(1024)
-    with open("下载的"+select_file, "wb+") as f:
-        f.write(file_data)
-    print("over")
+    if file_data:
+        with open("下载的"+select_file, "wb+") as f:
+            f.write(file_data)
+        print("over")
 
     #关闭
     client_socket.close()
