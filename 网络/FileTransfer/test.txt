@@ -1,0 +1,7 @@
+.cpp文件 要导入的函数前面加extern "C"
+.cpp编译成.so g++  -shared -fPIC  -o test.so test.cpp
+
+python文件
+from ctypes import cdll
+
+cur = cdll.LoadLibrary("x.so")
