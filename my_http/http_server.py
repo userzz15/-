@@ -23,7 +23,7 @@ def main():
     http_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # 设置当服务器先close时，资源能释放
     http_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    my_addres = ("127.0.0.1", 9999)
+    my_addres = ("192.168.3.17", 9999)
     http_socket.bind(my_addres)
     http_socket.listen(128)
     while 1:
