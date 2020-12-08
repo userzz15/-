@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        // var iNum = 10;
+        // alert(iNum)
+        // alert("hello world!")
+        window.onload = function() {
+            // var oDiv1 = document.getElementById("div1");
+            // oDiv1.style.color = 'red';
+            // var sTr = oDiv1.innerHTML;
+            // alert(sTr)
+
+            // oDiv1.innerHTML = "testtest"
+            var oUl = document.getElementById("div1");
+            var oLi = document.getElementsByTagName("li");
+            var iLen = oLi.length;
+            alert(iLen);
+            for (var i=0;i<iLen;i++){
+                if(i%2==0){
+                    oLi[i].style.backgroundColor = "red";
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div id="div1" class="">
+        test
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+    </div>
+    <!-- <input type="button" name="" value="点击" onclick="alert('hello world!')"> -->
+</body>
+</html>
