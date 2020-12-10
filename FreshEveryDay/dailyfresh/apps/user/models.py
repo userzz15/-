@@ -25,4 +25,4 @@ class Address(BaseModel):
     class Meta:
         db_table = 'df_address'
         verbose_name = "地址"
-        verbose_name_plural = reversed()
+        verbose_name_plural = verbose_name
