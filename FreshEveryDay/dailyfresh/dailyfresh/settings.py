@@ -86,9 +86,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dailyfresh',
         'USER': 'root',
-        'PASSWORD': 'mysql',
-        # 'HOST': 'localhost',
-        'HOST': '192.168.85.128',
+        # 'PASSWORD': 'mysql',
+        'PASSWORD': 'k',
+        'HOST': 'localhost',
+        # 'HOST': '192.168.85.128',
         'PORT': 3306,
     }
 }
