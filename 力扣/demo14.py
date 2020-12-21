@@ -16,10 +16,16 @@
 
 2 <= n <= 58
 """
-
+import copy
 
 class Solution:
     def cuttingRope(self, n):
+        # rope_dict = {
+        #     1: [1],
+        #     2: [1, 1],
+        #     3: [1, 2],
+        #     4: [2, 2],
+        # }
         rope_dict = {
             1: [1],
             2: [1, 1],
@@ -36,21 +42,35 @@ class Solution:
             for i in range(5, n+1):
                 res1 = 1
                 res2 = 1
-                rope_list1 = rope_dict[(n-2)]
+                rope_list1 = []
+                rope_list2 = []
+                if i-2 == 2 or i-2 == 3:
+                    rope_list1 = [i-2]
+                else:
+                    rope_list1 = copy.deepcopy(rope_dict[(i-2)])
                 rope_list1.append(2)
-                for i in rope_list1:
-                    res1 *= i
+                for j in rope_list1:
+                    res1 *= j
 
-                rope_list2 = rope_dict[(n-3)]
+                if i-3 == 2 or i-3 == 3:
+                    rope_list2 = [i-3]
+                else:
+                    rope_list2 = copy.deepcopy(rope_dict[(i-3)])
                 rope_list2.append(3)
-                for i in rope_list2:
-                    res2 *= i
+                for j in rope_list2:
+                    res2 *= j
 
                 if res1 > res2:
-                    rope_dict[n] = rope_list1
+                    rope_dict[i] = rope_list1
                     res = res1
                 else:
-                    rope_dict[n] = rope_list2
+                    rope_dict[i] = rope_list2
                     res = res2
 
-            return res
+            return res % 1000000007
+
+
+if __name__ == "__main__":
+
+    solution = Solution()
+    print(solution.cuttingRope(10))
