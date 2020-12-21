@@ -20,69 +20,42 @@
 输出：false
 """
 
+
 class Solution:
     def exist(self, board, word):
-        if board:
+        def dfs(i, j, index):
+            if i < 0 or i >= m or j < 0 or j >= n or board[i][j] != word[index]:
+                return False
+            if index == len(word) - 1:
+                return True
+            temp = board[i][j]
+            board[i][j] = " "
+            res = dfs(i + 1, j, index + 1) or dfs(i - 1, j, index + 1) or \
+                  dfs(i, j + 1, index + 1) or dfs(i, j - 1, index + 1)
+            board[i][j] = temp
+            return res
+
+        if board and board[0]:
             m = len(board)  # m行
-        if board[0]:
             n = len(board[0])  # n列
+        else:
+            return False
+        if len(word) > m * n:
+            return False
+
         for i in range(m):
             for j in range(n):
-                path_list = []
-                if board[i][j] == word[0]:
-                    path_list.append((i, j))
-                    now_i = i
-                    now_j = j
-                    if len(word) ==1:
-                        return True
-                    else:
-                        while True:
-                            if now_i+1 < m and (now_i + 1, now_j) not in path_list and board[now_i+1][now_j] == word[len(path_list)]:   # 下
-                                path_list.append((now_i + 1, now_j))
-                                now_i = now_i + 1
-                                if len(path_list) == len(word):
-                                    return True
-
-                            elif now_i-1 > -1 and (now_i - 1, now_j) not in path_list and board[now_i-1][now_j] == word[len(path_list)]:     # 上
-                                path_list.append((now_i - 1, now_j))
-                                now_i = now_i - 1
-                                if len(path_list) == len(word):
-                                    return True
-
-                            elif now_j+1 < n and (now_i, now_j + 1) not in path_list and board[now_i][now_j+1] == word[len(path_list)]:     # 右
-                                path_list.append((now_i, now_j + 1))
-                                now_j = now_j + 1
-                                if len(path_list) == len(word):
-                                    return True
-
-                            elif now_j-1 > -1 and (now_i, now_j - 1) not in path_list and board[now_i][now_j-1] == word[len(path_list)]:     # 左
-                                path_list.append((now_i, now_j - 1))
-                                now_j = now_j - 1
-                                if len(path_list) == len(word):
-                                    return True
-                            else:   # 无
-                                break
-                            print(path_list)
-
+                if dfs(i, j, 0):
+                    return True
         return False
 
 
 if __name__ == "__main__":
     a = [
-        ["C","A","A"],
-        ["A","A","A"],
-        ["B","C","D"]
+        ["a","b"],
+        ["c","d"]
     ]
-    targe = "AAB"
+
+    targe = "abcd"
     solution = Solution()
-    print(solution.exist(a,targe))
-
-
-
-
-
-
-
-
-
-
+    print(solution.exist(a, targe))
